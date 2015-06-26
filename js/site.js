@@ -58,7 +58,7 @@ function letsGo() {
         var width = 960,
             height = 500;
 
-        svg = d3.select("body").append("svg")
+        svg = d3.select(".viewport").append("svg")
             .attr("width", width)
             .attr("height", height)
             .append("g")
