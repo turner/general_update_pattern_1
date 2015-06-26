@@ -4,55 +4,67 @@
 
 function letsGo() {
 
-    var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+    var alphabet = "abcdefghijklmnopqrstuvwxyz".split(""),
+        svg = doSVG();
 
-    var width = 960,
-        height = 500;
+    update(svg, alphabet);
 
-    var svg = d3.select("body").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(32," + (height / 2) + ")");
+    setInterval(function() {
 
-    function update(data) {
+        update(svg, d3.shuffle(alphabet)
+            .slice(0, Math.floor(Math.random() * 26))
+            .sort());
+    }, 2000);
 
-        // DATA JOIN
-        // Join new data with old elements, if any.
-        var text = svg.selectAll("text")
-            .data(data);
+    function update(svgContainer, data) {
 
-        // UPDATE
-        // Update old elements as needed.
-        text.attr("class", "update");
+        var en,
+            up,
+            ex;
+
+        // enter and exit are appendages to update
+        up = svgContainer.selectAll("text").data(data);
+        en = up.enter();
+        ex = up.exit();
+
+        //// UPDATE
+        //// Update old elements as needed.
+        up.attr("class", "update");
 
         // ENTER
-        // Create new elements as needed.
-        text.enter().append("text")
+        // Create new elements as needed. Here, appending to the enter selection
+        // expands the update selection to include entering elements
+        en.append("text")
             .attr("class", "enter")
             .attr("x", function(d, i) { return i * 32; })
-            .attr("dy", ".35em");
+            .attr("dy", ".25em")
+            .text(function(d) { return d; });
 
         // ENTER + UPDATE
-        // Appending to the enter selection expands the update selection to include
-        // entering elements; so, operations on the update selection after appending to
-        // the enter selection will apply to both entering and updating nodes.
-        text.text(function(d) { return d; });
+        // Operations on the update selection apply to both enter-ing and update-ing
+        // nodes.
+        up.text(function(d) { return d; });
 
         // EXIT
         // Remove old elements as needed.
-        text.exit().remove();
+        //text.exit().remove();
+        ex.remove();
     }
 
-// The initial display.
-    update(alphabet);
+    function doSVG () {
 
-// Grab a random sample of letters from the alphabet, in alphabetical order.
-    setInterval(function() {
-        update(d3.shuffle(alphabet)
-            .slice(0, Math.floor(Math.random() * 26))
-            .sort());
-    }, 1500);
+        var svg;
 
+        var width = 960,
+            height = 500;
+
+        svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(32," + (height / 2) + ")");
+
+        return svg;
+    }
 
 }

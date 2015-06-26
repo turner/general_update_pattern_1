@@ -1,13 +1,13 @@
 
 text {
-    font: bold 48px monospace;
+    font: bold 24px monospace;
 }
 
 .enter {
-    fill: green;
+    fill: #e10001;
 }
 
 .update {
-    fill: #333;
+    fill: #289e0f;
 }
 
