@@ -14,7 +14,7 @@ function letsGo() {
         update(svg, d3.shuffle(alphabet)
             .slice(0, Math.floor(Math.random() * 26))
             .sort());
-    }, 2000);
+    }, 3500);
 
     function update(svgContainer, data) {
 
@@ -31,7 +31,7 @@ function letsGo() {
         // Update old elements as needed.
         up
             .attr("fill", "white")
-            .transition().delay(250).duration(2500)
+            .transition().delay(250).duration(1500)
             .attr("fill", "#525252");
 
         // ENTER
@@ -39,7 +39,7 @@ function letsGo() {
         // expands the update selection to include entering elements
         en.append("text")
             .attr("fill", "white")
-            .transition().delay(500).duration(2500)
+            .transition().delay(500).duration(1500)
             .attr("fill", "#3ADD0F")
             .attr("x", function(d, i) { return i * 32; })
             .attr("dy", ".25em")
