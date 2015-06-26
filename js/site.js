@@ -29,13 +29,19 @@ function letsGo() {
 
         //// UPDATE
         //// Update old elements as needed.
-        up.attr("class", "update");
+        //up.attr("class", "update");
+        up
+            .attr("fill", "white")
+            .transition().duration(1500)
+            .attr("fill", "#525252");
 
         // ENTER
         // Create new elements as needed. Here, appending to the enter selection
         // expands the update selection to include entering elements
         en.append("text")
-            .attr("class", "enter")
+            .attr("fill", "white")
+            .transition().delay(500).duration(1500)
+            .attr("fill", "#3ADD0F")
             .attr("x", function(d, i) { return i * 32; })
             .attr("dy", ".25em")
             .text(function(d) { return d; });
@@ -48,7 +54,10 @@ function letsGo() {
         // EXIT
         // Remove old elements as needed.
         //text.exit().remove();
-        ex.remove();
+        ex
+            .transition().delay(500).duration(500)
+            .attr("fill", "red")
+            .remove();
     }
 
     function doSVG () {
