@@ -1,19 +1,30 @@
 /**
  * Created by turner on 6/26/15.
  */
+var scarpa = (function (scarpa) {
+
+    scarpa.alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+
+    scarpa.datasource = function (doShuffle) {
+
+        if (!doShuffle) {
+            return scarpa.alphabet;
+        } else {
+           return d3.shuffle(scarpa.alphabet).slice(0, Math.floor(Math.random() * scarpa.alphabet.length)).sort();
+        }
+    };
+
+    return scarpa;
+})(scarpa || {});
 
 function letsGo() {
 
-    var alphabet = "abcdefghijklmnopqrstuvwxyz".split(""),
-        svg = doSVG();
+    var svg = doSVG();
 
-    update(svg, alphabet);
+    update(svg, scarpa.datasource(false));
 
     setInterval(function() {
-
-        update(svg, d3.shuffle(alphabet)
-            .slice(0, Math.floor(Math.random() * 26))
-            .sort());
+        update(svg, scarpa.datasource(true));
     }, 2000);
 
     function update(svgContainer, data) {
@@ -30,16 +41,16 @@ function letsGo() {
         // UPDATE
         // Update old elements as needed.
         up
-            .attr("fill", "white")
-            .transition().delay(250).duration(2500)
+            //.attr("fill", "white")
+            //.transition().delay(250).duration(2500)
             .attr("fill", "#525252");
 
         // ENTER
         // Create new elements as needed. Here, appending to the enter selection
         // expands the update selection to include entering elements
         en.append("text")
-            .attr("fill", "white")
-            .transition().delay(500).duration(2500)
+            //.attr("fill", "white")
+            //.transition().delay(500).duration(2500)
             .attr("fill", "#3ADD0F")
             .attr("x", function(d, i) { return i * 32; })
             .attr("dy", ".25em")
