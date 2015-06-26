@@ -32,7 +32,7 @@ function letsGo() {
         //up.attr("class", "update");
         up
             .attr("fill", "white")
-            .transition().duration(1500)
+            .transition().delay(250).duration(2500)
             .attr("fill", "#525252");
 
         // ENTER
@@ -40,7 +40,7 @@ function letsGo() {
         // expands the update selection to include entering elements
         en.append("text")
             .attr("fill", "white")
-            .transition().delay(500).duration(1500)
+            .transition().delay(500).duration(2500)
             .attr("fill", "#3ADD0F")
             .attr("x", function(d, i) { return i * 32; })
             .attr("dy", ".25em")
@@ -55,7 +55,7 @@ function letsGo() {
         // Remove old elements as needed.
         //text.exit().remove();
         ex
-            .transition().delay(500).duration(500)
+            .transition().delay(750).duration(1000)
             .attr("fill", "red")
             .remove();
     }
