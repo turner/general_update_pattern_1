@@ -27,9 +27,8 @@ function letsGo() {
         en = up.enter();
         ex = up.exit();
 
-        //// UPDATE
-        //// Update old elements as needed.
-        //up.attr("class", "update");
+        // UPDATE
+        // Update old elements as needed.
         up
             .attr("fill", "white")
             .transition().delay(250).duration(2500)
