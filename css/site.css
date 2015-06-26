@@ -1,13 +1,36 @@
-
 text {
     font: bold 24px monospace;
 }
 
-.enter {
-    fill: #e10001;
+
+.virtual_scroller_row_text {
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: small;
+    font-weight: 400;
+    color: #ffffff;
+
+}
+.virtual_scroller_row {
+
+    width: 256px;
+    height: 32px;
 }
 
-.update {
-    fill: rgba(40, 158, 15, 0.13);
-}
+.virtual_scroller_viewport {
+    position: absolute;
+    left: 32px;
+    top: 32px;
 
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    width: 256px;
+    height: 768px;
+    background-color: #ffffff;
+
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(82, 82, 82);
+
+}

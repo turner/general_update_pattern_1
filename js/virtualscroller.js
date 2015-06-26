@@ -33,7 +33,6 @@ d3.VirtualScroller = function() {
             scrollRenderFrame(position);
         }
 
-
         function scrollRenderFrame(scrollPosition) {
             container.attr("transform", "translate(0," + (scrollPosition * rowHeight) + ")");   // position viewport to stay visible
             var position0 = Math.max(0, Math.min(scrollPosition, totalRows - visibleRows + 1)), // calculate positioning (use + 1 to offset 0 position vs totalRow count diff) 
